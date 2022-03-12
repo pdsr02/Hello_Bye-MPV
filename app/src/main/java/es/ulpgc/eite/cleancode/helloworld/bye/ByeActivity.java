@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import es.ulpgc.eite.cleancode.helloworld.R;
+
 public class ByeActivity
         extends AppCompatActivity implements ByeContract.View {
 
@@ -17,7 +19,7 @@ public class ByeActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bye);
-        getSupportActionBar().setTitle(R.string.app_name);
+        getSupportActionBar().setTitle(R.string.bye_screen_title);
 
 
         // do the setup
@@ -65,7 +67,7 @@ public class ByeActivity
         //Log.e(TAG, "onDataUpdated()");
 
         // deal with the data
-        ((TextView) findViewById(R.id.data)).setText(viewModel.data);
+        //((TextView) findViewById(R.id.data)).setText(viewModel.data);
     }
 
 

@@ -2,6 +2,8 @@ package es.ulpgc.eite.cleancode.helloworld.bye;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.cleancode.helloworld.app.AppMediator;
+
 public class ByePresenter implements ByeContract.Presenter {
 
     public static String TAG = ByePresenter.class.getSimpleName();
@@ -27,7 +29,7 @@ public class ByePresenter implements ByeContract.Presenter {
         state.data = model.getStoredData();
 
         // use passed state if is necessary
-        PreviousToByeState savedState = getStateFromPreviousScreen();
+        /*PreviousToByeState savedState = getStateFromPreviousScreen();
         if (savedState != null) {
 
             // update the model if is necessary
@@ -35,7 +37,7 @@ public class ByePresenter implements ByeContract.Presenter {
 
             // update the state if is necessary
             state.data = savedState.data;
-        }
+        }*/
     }
 
     @Override
@@ -51,7 +53,7 @@ public class ByePresenter implements ByeContract.Presenter {
         // Log.e(TAG, "onResume()");
 
         // use passed state if is necessary
-        NextToByeState savedState = getStateFromNextScreen();
+        /*NextToByeState savedState = getStateFromNextScreen();
         if (savedState != null) {
 
             // update the model if is necessary
@@ -59,7 +61,7 @@ public class ByePresenter implements ByeContract.Presenter {
 
             // update the state if is necessary
             state.data = savedState.data;
-        }
+        }*/
 
         // call the model and update the state
         //state.data = model.getStoredData();
@@ -84,6 +86,8 @@ public class ByePresenter implements ByeContract.Presenter {
         // Log.e(TAG, "onDestroy()");
     }
 
+
+/*
     private NextToByeState getStateFromNextScreen() {
         return mediator.getNextByeScreenState();
     }
@@ -99,7 +103,7 @@ public class ByePresenter implements ByeContract.Presenter {
     private PreviousToByeState getStateFromPreviousScreen() {
         return mediator.getPreviousByeScreenState();
     }
-
+*/
     @Override
     public void injectView(WeakReference<ByeContract.View> view) {
         this.view = view;

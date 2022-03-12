@@ -1,5 +1,7 @@
 package es.ulpgc.eite.cleancode.helloworld.hello;
 
+import android.util.Log;
+
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.cleancode.helloworld.app.AppMediator;
@@ -45,7 +47,7 @@ public class HelloPresenter implements HelloContract.Presenter {
 
   @Override
   public void sayHelloButtonClicked() {
-    //Log.e(TAG, "sayHelloButtonClicked()");
+    Log.e(TAG, "sayHelloButtonClicked()");
 
     state.helloMessage = "?";
 
@@ -62,7 +64,7 @@ public class HelloPresenter implements HelloContract.Presenter {
 
     HelloToByeState newState = new HelloToByeState(state.helloMessage);
     passDataToByeScreen(newState);
-    navigateToByeScreen();
+    view.get().navigateToByeScreen();
   }
 
   private ByeToHelloState getDataFromByeScreen() {
@@ -70,11 +72,7 @@ public class HelloPresenter implements HelloContract.Presenter {
   }
 
   private void passDataToByeScreen(HelloToByeState state) {
-    //TODO: no implemented
-  }
-
-  private void navigateToByeScreen() {
-    //TODO: no implemented
+    mediator.setHelloToByeState(state);
   }
 
   @Override

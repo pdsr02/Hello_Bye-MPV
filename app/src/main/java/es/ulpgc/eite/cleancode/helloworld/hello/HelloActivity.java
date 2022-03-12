@@ -1,5 +1,6 @@
 package es.ulpgc.eite.cleancode.helloworld.hello;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import es.ulpgc.eite.cleancode.helloworld.R;
+import es.ulpgc.eite.cleancode.helloworld.bye.ByeActivity;
 
 
 public class HelloActivity
@@ -46,7 +48,7 @@ public class HelloActivity
     */
 
     // do the setup
-    HelloScreen.configure(this);
+    HelloScreen.configure(this);//Crear la pantalla de hello
 
   }
 
@@ -58,12 +60,19 @@ public class HelloActivity
     presenter.onResumeCalled();
   }
 
+  //mostrar mensaje en pantalla
   @Override
   public void displayHelloData(HelloViewModel viewModel) {
     Log.e(TAG, "displayHelloData()");
 
     // deal with the data
     helloMessage.setText(viewModel.helloMessage);
+  }
+
+  @Override
+  public void navigateToByeScreen() {
+    Intent intent = new Intent(this, ByeActivity.class);
+    startActivity(intent);
   }
 
 

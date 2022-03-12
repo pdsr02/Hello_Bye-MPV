@@ -6,8 +6,9 @@ public interface HelloContract {
 
   interface View {
     void injectPresenter(Presenter presenter);
-
     void displayHelloData(HelloViewModel viewModel);
+    void navigateToByeScreen();
+
   }
 
   interface Presenter {
