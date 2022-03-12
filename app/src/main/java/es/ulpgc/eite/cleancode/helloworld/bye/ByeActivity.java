@@ -2,6 +2,8 @@ package es.ulpgc.eite.cleancode.helloworld.bye;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,11 +17,27 @@ public class ByeActivity
 
     private ByeContract.Presenter presenter;
 
+    Button sayHelloButton, goByeButton;
+    TextView byeMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bye);
         getSupportActionBar().setTitle(R.string.bye_screen_title);
+
+       sayHelloButton = findViewById(R.id.sayHelloButton);
+        goByeButton = findViewById(R.id.goByeButton);
+
+        byeMessage = findViewById(R.id.byeMessage);
+
+        /*sayHelloButton.setOnClickListener(v -> presenter.sayHelloButtonClicked());
+
+        goByeButton.setOnClickListener(v -> presenter.goByeButtonClicked());
+
+        sayHelloButton.setText(getSayHelloButtonLabel());
+        goByeButton.setText(getGoByeButtonLabel());*/
+
 
 
         // do the setup
@@ -64,10 +82,18 @@ public class ByeActivity
 
     @Override
     public void onDataUpdated(ByeViewModel viewModel) {
-        //Log.e(TAG, "onDataUpdated()");
+        Log.e(TAG, "onDataUpdated()");
 
         // deal with the data
-        //((TextView) findViewById(R.id.data)).setText(viewModel.data);
+        ((TextView) findViewById(R.id.byeMessage)).setText(viewModel.data);
+    }
+
+    private String getGoByeButtonLabel() {
+        return getResources().getString(R.string.go_bye_button_label);
+    }
+
+    private String getSayHelloButtonLabel() {
+        return getResources().getString(R.string.say_hello_button_label);
     }
 
 

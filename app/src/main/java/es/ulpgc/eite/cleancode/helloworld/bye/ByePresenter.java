@@ -1,8 +1,12 @@
 package es.ulpgc.eite.cleancode.helloworld.bye;
 
+import android.util.Log;
+
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.cleancode.helloworld.app.AppMediator;
+import es.ulpgc.eite.cleancode.helloworld.app.ByeToHelloState;
+import es.ulpgc.eite.cleancode.helloworld.app.HelloToByeState;
 
 public class ByePresenter implements ByeContract.Presenter {
 
@@ -29,10 +33,10 @@ public class ByePresenter implements ByeContract.Presenter {
         state.data = model.getStoredData();
 
         // use passed state if is necessary
-        /*PreviousToByeState savedState = getStateFromPreviousScreen();
-        if (savedState != null) {
+        HelloToByeState savedState = mediator.getHelloToByeState();
+       /* if (savedState != null) {
 
-            // update the model if is necessary
+           // update the model if is necessary
             model.onDataFromPreviousScreen(savedState.data);
 
             // update the state if is necessary
@@ -50,7 +54,7 @@ public class ByePresenter implements ByeContract.Presenter {
 
     @Override
     public void onResume() {
-        // Log.e(TAG, "onResume()");
+         Log.e(TAG, "onResume()");
 
         // use passed state if is necessary
         /*NextToByeState savedState = getStateFromNextScreen();
@@ -87,23 +91,23 @@ public class ByePresenter implements ByeContract.Presenter {
     }
 
 
-/*
-    private NextToByeState getStateFromNextScreen() {
+
+    /*private NextToByeState getStateFromNextScreen() {
         return mediator.getNextByeScreenState();
     }
 
     private void passStateToNextScreen(ByeToNextState state) {
         mediator.setNextByeScreenState(state);
+    }*/
+
+    private void passStateToHelloScreen(HelloToByeState state) {
+        mediator.setHelloToByeState(state);
     }
 
-    private void passStateToPreviousScreen(ByeToPreviousState state) {
-        mediator.setPreviousByeScreenState(state);
+    private HelloToByeState getStateFromPreviousScreen() {
+        return mediator.getHelloToByeState();
     }
 
-    private PreviousToByeState getStateFromPreviousScreen() {
-        return mediator.getPreviousByeScreenState();
-    }
-*/
     @Override
     public void injectView(WeakReference<ByeContract.View> view) {
         this.view = view;
@@ -113,5 +117,7 @@ public class ByePresenter implements ByeContract.Presenter {
     public void injectModel(ByeContract.Model model) {
         this.model = model;
     }
+
+
 
 }
