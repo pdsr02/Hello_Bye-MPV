@@ -15,12 +15,13 @@ public class HelloScreen {
     WeakReference<FragmentActivity> context =
         new WeakReference<>((FragmentActivity) view);
 
-    String message = context.get().getString(R.string.hello_message);
 
     AppMediator mediator = AppMediator.getInstance();
-
     HelloContract.Presenter presenter = new HelloPresenter(mediator);
+
+    String message = context.get().getString(R.string.hello_message);
     HelloContract.Model model = new HelloModel(message);
+
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
     view.injectPresenter(presenter);

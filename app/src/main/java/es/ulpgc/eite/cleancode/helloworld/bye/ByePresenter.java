@@ -24,7 +24,7 @@ public class ByePresenter implements ByeContract.Presenter {
 
     @Override
     public void onStart() {
-        // Log.e(TAG, "onStart()");
+        Log.e(TAG, "onStartBye()");
 
         // initialize the state
         state = new ByeState();
@@ -37,7 +37,7 @@ public class ByePresenter implements ByeContract.Presenter {
        if (savedState != null) {
 
            // update the model if is necessary
-            model.onDataFromPreviousScreen(savedState.message);
+            //model.onDataFromPreviousScreen(savedState.message);
 
             // update the state if is necessary
             state.byeMessage = savedState.message;
