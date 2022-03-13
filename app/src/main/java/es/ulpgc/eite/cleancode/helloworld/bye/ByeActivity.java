@@ -28,26 +28,17 @@ public class ByeActivity
 
         sayByeButton = findViewById(R.id.sayByeButton);
         goHelloButton = findViewById(R.id.goHelloButton);
+        byeMessage = findViewById(R.id.byeMessage);
 
         sayByeButton.setOnClickListener(v -> presenter.sayByeButtonClicked());
-
         goHelloButton.setOnClickListener(v -> presenter.goHelloButtonClicked());
 
         sayByeButton.setText(getSayByeButtonLabel());
         goHelloButton.setText(getGoHelloButtonLabel());
 
-        byeMessage = findViewById(R.id.byeMessage);
-
-
         // do the setup
         ByeScreen.configure(this);
 
-        if (savedInstanceState == null) {
-            presenter.onStart();
-
-        } else {
-            presenter.onRestart();
-        }
     }
 
     private String getGoHelloButtonLabel() {
@@ -94,6 +85,11 @@ public class ByeActivity
 
         // deal with the data
         byeMessage.setText(viewModel.byeMessage);
+    }
+
+    @Override
+    public void finishView() {
+        finish();
     }
 
     @Override

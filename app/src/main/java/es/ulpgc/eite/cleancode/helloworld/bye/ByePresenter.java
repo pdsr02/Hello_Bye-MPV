@@ -5,6 +5,7 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.cleancode.helloworld.app.AppMediator;
+import es.ulpgc.eite.cleancode.helloworld.app.ByeToHelloState;
 import es.ulpgc.eite.cleancode.helloworld.app.HelloToByeState;
 
 public class ByePresenter implements ByeContract.Presenter {
@@ -59,15 +60,10 @@ public class ByePresenter implements ByeContract.Presenter {
         HelloToByeState savedState = getStateFromHelloScreen();
         if (savedState != null) {
 
-            // update the model if is necessary
-            model.onDataFromNextScreen(savedState.message);
-
             // update the state if is necessary
             state.byeMessage = savedState.message;
         }
 
-        // call the model and update the state
-        state.byeMessage = model.getByeMessage();
 
         // update the view
         view.get().onDataUpdated(state);
@@ -91,27 +87,33 @@ public class ByePresenter implements ByeContract.Presenter {
 
     @Override
     public void sayByeButtonClicked() {
+        Log.e(TAG, "sayByeButtonClicked()");
+        state.byeMessage = "?";
+        view.get().onDataUpdated(state);
+        startByeMessageAsyncTask();
+    }
 
+    private void startByeMessageAsyncTask() {
+        Log.e(TAG, "startByeMessageAsyncTask()");
+
+        String message = model.getByeMessage();
+        state.byeMessage = message;
+
+        view.get().onDataUpdated(state);
     }
 
     @Override
     public void goHelloButtonClicked() {
+        ByeToHelloState newState = new ByeToHelloState(state.byeMessage);
+        passDataToHelloScreen(newState);
+        view.get().finishView();
 
     }
 
-
-
-    /*private NextToByeState getStateFromNextScreen() {
-        return mediator.getNextByeScreenState();
+    private void passDataToHelloScreen(ByeToHelloState newState) {
+        mediator.setByeToHelloState(newState);
     }
 
-    private void passStateToNextScreen(ByeToNextState state) {
-        mediator.setNextByeScreenState(state);
-    }
-
-    private void passStateToHelloScreen(HelloToByeState state) {
-        mediator.setHelloToByeState(state);
-    }*/
 
     private HelloToByeState getStateFromHelloScreen() {
         return mediator.getHelloToByeState();

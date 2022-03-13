@@ -1,5 +1,7 @@
 package es.ulpgc.eite.cleancode.helloworld.bye;
 
+import android.util.Log;
+
 public class ByeModel implements ByeContract.Model {
 
     public static String TAG = ByeModel.class.getSimpleName();
@@ -12,7 +14,7 @@ public class ByeModel implements ByeContract.Model {
 
     @Override
     public String getByeMessage() {
-        // Log.e(TAG, "getStoredData()");
+        Log.e(TAG, "getStoredData()");
         return message;
     }
 

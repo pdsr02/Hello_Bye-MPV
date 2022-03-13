@@ -9,6 +9,7 @@ public interface ByeContract {
 
         void onDataUpdated(ByeViewModel viewModel);
 
+        void finishView();
     }
 
     interface Presenter {
