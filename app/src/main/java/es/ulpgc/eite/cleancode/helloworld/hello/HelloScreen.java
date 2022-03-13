@@ -23,7 +23,6 @@ public class HelloScreen {
     HelloContract.Model model = new HelloModel(message);
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
-
     view.injectPresenter(presenter);
 
   }

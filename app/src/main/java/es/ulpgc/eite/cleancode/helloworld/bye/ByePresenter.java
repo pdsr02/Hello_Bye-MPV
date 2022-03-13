@@ -124,10 +124,10 @@ public class ByePresenter implements ByeContract.Presenter {
 
         view.get().onDataUpdated(state);
         // call the model
-        startHelloMessageAsyncTask();
+        startByeMessageAsyncTask();
     }
 
-    private void startHelloMessageAsyncTask() {
+    private void startByeMessageAsyncTask() {
         Log.e(TAG, "startByeMessageAsyncTask()");
 
         state.byeMessage = model.getStoredData();

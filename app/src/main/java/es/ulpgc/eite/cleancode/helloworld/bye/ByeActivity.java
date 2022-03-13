@@ -31,19 +31,19 @@ public class ByeActivity
 
         byeMessage = findViewById(R.id.byeMessage);
 
-       /* sayByeButton.setOnClickListener(v -> presenter.sayByeButtonClicked());
-        sayByeButton.setText(getByeButtonLabel());*/
+        sayByeButton.setOnClickListener(v -> presenter.sayByeButtonClicked());
+        sayByeButton.setText(getByeButtonLabel());
 
 
         // do the setup
         ByeScreen.configure(this);
 
-        if (savedInstanceState == null) {
+        /*if (savedInstanceState == null) {
             presenter.onStart();
 
         } else {
             presenter.onRestart();
-        }
+        }*/
     }
 
     private String getByeButtonLabel() {

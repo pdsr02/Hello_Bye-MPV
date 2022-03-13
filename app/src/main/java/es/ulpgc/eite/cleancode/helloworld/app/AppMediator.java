@@ -15,6 +15,7 @@ public class AppMediator {
 
   private AppMediator() {
     helloState = new HelloState();
+    byeState = new ByeState();
   }
 
 
