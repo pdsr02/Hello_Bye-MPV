@@ -11,7 +11,7 @@ public class ByeModel implements ByeContract.Model {
     }
 
     @Override
-    public String getStoredData() {
+    public String getByeMessage() {
         // Log.e(TAG, "getStoredData()");
         return message;
     }
@@ -27,7 +27,7 @@ public class ByeModel implements ByeContract.Model {
     }
 
     @Override
-    public void onDataFromPreviousScreen(String message) {
+    public void onDataFromHelloScreen(String message) {
         // Log.e(TAG, "onDataFromPreviousScreen()");
     }
 }

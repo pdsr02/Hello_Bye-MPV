@@ -17,7 +17,7 @@ public class ByeActivity
 
     private ByeContract.Presenter presenter;
 
-    Button sayHelloButton, sayByeButton;
+    Button goHelloButton, sayByeButton;
     TextView byeMessage;
 
     @Override
@@ -26,10 +26,18 @@ public class ByeActivity
         setContentView(R.layout.activity_bye);
         getSupportActionBar().setTitle(R.string.bye_screen_title);
 
-        sayHelloButton = findViewById(R.id.sayHelloButton);
-        sayByeButton = findViewById(R.id.goByeButton);
+        sayByeButton = findViewById(R.id.sayByeButton);
+        goHelloButton = findViewById(R.id.goHelloButton);
+
+        sayByeButton.setOnClickListener(v -> presenter.sayByeButtonClicked());
+
+        goHelloButton.setOnClickListener(v -> presenter.goHelloButtonClicked());
+
+        sayByeButton.setText(getSayByeButtonLabel());
+        goHelloButton.setText(getGoHelloButtonLabel());
 
         byeMessage = findViewById(R.id.byeMessage);
+
 
         // do the setup
         ByeScreen.configure(this);
@@ -42,9 +50,14 @@ public class ByeActivity
         }
     }
 
-    private String getByeButtonLabel() {
+    private String getGoHelloButtonLabel() {
+        return getResources().getString(R.string.go_hello_button_label);
+    }
+
+    private String getSayByeButtonLabel() {
         return getResources().getString(R.string.say_bye_button_label);
     }
+
 
     @Override
     protected void onResume() {

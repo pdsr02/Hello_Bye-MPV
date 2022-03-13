@@ -5,7 +5,6 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.cleancode.helloworld.app.AppMediator;
-import es.ulpgc.eite.cleancode.helloworld.app.ByeToHelloState;
 import es.ulpgc.eite.cleancode.helloworld.app.HelloToByeState;
 
 public class ByePresenter implements ByeContract.Presenter {
@@ -30,14 +29,14 @@ public class ByePresenter implements ByeContract.Presenter {
         state = new ByeState();
 
         // call the model and update the state
-         state.byeMessage=model.getStoredData();
+         state.byeMessage=model.getByeMessage();
 
         // use passed state if is necessary
         HelloToByeState savedState = mediator.getHelloToByeState();
        if (savedState != null) {
 
-           // update the model if is necessary
-            //model.onDataFromPreviousScreen(savedState.message);
+
+           model.onDataFromHelloScreen(savedState.message);
 
             // update the state if is necessary
             state.byeMessage = savedState.message;
@@ -68,7 +67,7 @@ public class ByePresenter implements ByeContract.Presenter {
         }
 
         // call the model and update the state
-        state.byeMessage = model.getStoredData();
+        state.byeMessage = model.getByeMessage();
 
         // update the view
         view.get().onDataUpdated(state);
@@ -88,6 +87,16 @@ public class ByePresenter implements ByeContract.Presenter {
     @Override
     public void onDestroy() {
         // Log.e(TAG, "onDestroy()");
+    }
+
+    @Override
+    public void sayByeButtonClicked() {
+
+    }
+
+    @Override
+    public void goHelloButtonClicked() {
+
     }
 
 
@@ -117,24 +126,5 @@ public class ByePresenter implements ByeContract.Presenter {
     public void injectModel(ByeContract.Model model) {
         this.model = model;
     }
-
-    @Override
-    public void sayByeButtonClicked() {
-        Log.e(TAG, "sayHelloButtonClicked()");
-
-        view.get().onDataUpdated(state);
-        // call the model
-        startByeMessageAsyncTask();
-    }
-
-    private void startByeMessageAsyncTask() {
-        Log.e(TAG, "startByeMessageAsyncTask()");
-
-        state.byeMessage = model.getStoredData();
-
-        view.get().onDataUpdated(state);
-    }
-
-
 
 }

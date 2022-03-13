@@ -30,17 +30,17 @@ public interface ByeContract {
 
         void sayByeButtonClicked();
 
-
+        void goHelloButtonClicked();
     }
 
     interface Model {
-        String getStoredData();
+        String getByeMessage();
 
         void onDataFromNextScreen(String data);
 
         void onRestartScreen(String data);
 
-        void onDataFromPreviousScreen(String data);
+        void onDataFromHelloScreen(String data);
     }
 
 }
