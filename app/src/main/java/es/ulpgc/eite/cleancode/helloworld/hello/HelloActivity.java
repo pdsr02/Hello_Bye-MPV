@@ -41,6 +41,7 @@ public class HelloActivity
     sayHelloButton.setText(getSayHelloButtonLabel());
     goByeButton.setText(getGoByeButtonLabel());
 
+
     /*
     if(savedInstanceState == null) {
       AppMediator.resetInstance();

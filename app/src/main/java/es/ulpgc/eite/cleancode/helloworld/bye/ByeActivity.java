@@ -17,7 +17,7 @@ public class ByeActivity
 
     private ByeContract.Presenter presenter;
 
-    Button sayHelloButton, goByeButton;
+    Button sayHelloButton, sayByeButton;
     TextView byeMessage;
 
     @Override
@@ -26,18 +26,13 @@ public class ByeActivity
         setContentView(R.layout.activity_bye);
         getSupportActionBar().setTitle(R.string.bye_screen_title);
 
-       sayHelloButton = findViewById(R.id.sayHelloButton);
-        goByeButton = findViewById(R.id.goByeButton);
+        sayHelloButton = findViewById(R.id.sayHelloButton);
+        sayByeButton = findViewById(R.id.goByeButton);
 
         byeMessage = findViewById(R.id.byeMessage);
 
-        /*sayHelloButton.setOnClickListener(v -> presenter.sayHelloButtonClicked());
-
-        goByeButton.setOnClickListener(v -> presenter.goByeButtonClicked());
-
-        sayHelloButton.setText(getSayHelloButtonLabel());
-        goByeButton.setText(getGoByeButtonLabel());*/
-
+       /* sayByeButton.setOnClickListener(v -> presenter.sayByeButtonClicked());
+        sayByeButton.setText(getByeButtonLabel());*/
 
 
         // do the setup
@@ -49,6 +44,10 @@ public class ByeActivity
         } else {
             presenter.onRestart();
         }
+    }
+
+    private String getByeButtonLabel() {
+        return getResources().getString(R.string.say_bye_button_label);
     }
 
     @Override
@@ -85,26 +84,14 @@ public class ByeActivity
         Log.e(TAG, "onDataUpdated()");
 
         // deal with the data
-        ((TextView) findViewById(R.id.byeMessage)).setText(viewModel.data);
-    }
-
-    private String getGoByeButtonLabel() {
-        return getResources().getString(R.string.go_bye_button_label);
-    }
-
-    private String getSayHelloButtonLabel() {
-        return getResources().getString(R.string.say_hello_button_label);
-    }
-
-
-    @Override
-    public void navigateToNextScreen() {
-        Intent intent = new Intent(this, ByeActivity.class);
-        startActivity(intent);
+        byeMessage.setText(viewModel.byeMessage);
     }
 
     @Override
     public void injectPresenter(ByeContract.Presenter presenter) {
         this.presenter = presenter;
     }
+
+
+
 }

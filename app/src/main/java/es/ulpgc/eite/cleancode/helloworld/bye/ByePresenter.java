@@ -30,18 +30,18 @@ public class ByePresenter implements ByeContract.Presenter {
         state = new ByeState();
 
         // call the model and update the state
-        state.data = model.getStoredData();
+         state.byeMessage=model.getStoredData();
 
         // use passed state if is necessary
         HelloToByeState savedState = mediator.getHelloToByeState();
-       /* if (savedState != null) {
+       if (savedState != null) {
 
            // update the model if is necessary
-            model.onDataFromPreviousScreen(savedState.data);
+            model.onDataFromPreviousScreen(savedState.message);
 
             // update the state if is necessary
-            state.data = savedState.data;
-        }*/
+            state.byeMessage = savedState.message;
+        }
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ByePresenter implements ByeContract.Presenter {
         // Log.e(TAG, "onRestart()");
 
         // update the model if is necessary
-        model.onRestartScreen(state.data);
+        model.onRestartScreen(state.byeMessage);
     }
 
     @Override
@@ -57,18 +57,18 @@ public class ByePresenter implements ByeContract.Presenter {
          Log.e(TAG, "onResume()");
 
         // use passed state if is necessary
-        /*NextToByeState savedState = getStateFromNextScreen();
+        HelloToByeState savedState = getStateFromHelloScreen();
         if (savedState != null) {
 
             // update the model if is necessary
-            model.onDataFromNextScreen(savedState.data);
+            model.onDataFromNextScreen(savedState.message);
 
             // update the state if is necessary
-            state.data = savedState.data;
-        }*/
+            state.byeMessage = savedState.message;
+        }
 
         // call the model and update the state
-        //state.data = model.getStoredData();
+        state.byeMessage = model.getStoredData();
 
         // update the view
         view.get().onDataUpdated(state);
@@ -98,13 +98,13 @@ public class ByePresenter implements ByeContract.Presenter {
 
     private void passStateToNextScreen(ByeToNextState state) {
         mediator.setNextByeScreenState(state);
-    }*/
+    }
 
     private void passStateToHelloScreen(HelloToByeState state) {
         mediator.setHelloToByeState(state);
-    }
+    }*/
 
-    private HelloToByeState getStateFromPreviousScreen() {
+    private HelloToByeState getStateFromHelloScreen() {
         return mediator.getHelloToByeState();
     }
 
@@ -116,6 +116,23 @@ public class ByePresenter implements ByeContract.Presenter {
     @Override
     public void injectModel(ByeContract.Model model) {
         this.model = model;
+    }
+
+    @Override
+    public void sayByeButtonClicked() {
+        Log.e(TAG, "sayHelloButtonClicked()");
+
+        view.get().onDataUpdated(state);
+        // call the model
+        startHelloMessageAsyncTask();
+    }
+
+    private void startHelloMessageAsyncTask() {
+        Log.e(TAG, "startByeMessageAsyncTask()");
+
+        state.byeMessage = model.getStoredData();
+
+        view.get().onDataUpdated(state);
     }
 
 

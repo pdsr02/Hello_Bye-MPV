@@ -25,7 +25,7 @@ public class HelloPresenter implements HelloContract.Presenter {
 
   @Override
   public void onResumeCalled() {
-    //Log.e(TAG, "onResumeCalled()");
+    Log.e(TAG, "onResumeHelloCalled()");
 
     ByeToHelloState savedState = getDataFromByeScreen();
     if(savedState != null){
@@ -38,7 +38,7 @@ public class HelloPresenter implements HelloContract.Presenter {
   }
 
   private void startHelloMessageAsyncTask() {
-    //Log.e(TAG, "startHelloMessageAsyncTask()");
+    Log.e(TAG, "startHelloMessageAsyncTask()");
 
     state.helloMessage = model.getHelloMessage();
 
@@ -60,7 +60,7 @@ public class HelloPresenter implements HelloContract.Presenter {
 
   @Override
   public void goByeButtonClicked() {
-    //Log.e(TAG, "goByeButtonClicked()");
+    Log.e(TAG, "goByeButtonClicked()");
 
     HelloToByeState newState = new HelloToByeState(state.helloMessage);
     passDataToByeScreen(newState);
